@@ -924,7 +924,7 @@ void run_stats::print_histogram(FILE *out, json_handler *jsonhandler, arbitrary_
         if (jsonhandler != NULL){ jsonhandler->open_nesting("SET",NESTED_ARRAY);}
         for( latency_map_itr_const it = m_set_latency_map.begin() ; it != m_set_latency_map.end() ; it++) {
             total_count += it->second;
-            histogram_print(out, jsonhandler, "SET",it->first,(double) total_count / m_totals.m_set_cmd.m_ops * 100);
+            histogram_print(out, jsonhandler, "SET",it->first,(double) m_totals.m_set_cmd.m_ops);
         }
         if (jsonhandler != NULL){ jsonhandler->close_nesting();}
         fprintf(out, "---\n");
@@ -934,7 +934,7 @@ void run_stats::print_histogram(FILE *out, json_handler *jsonhandler, arbitrary_
         if (jsonhandler != NULL){ jsonhandler->open_nesting("GET",NESTED_ARRAY);}
         for( latency_map_itr_const it = m_get_latency_map.begin() ; it != m_get_latency_map.end() ; it++) {
             total_count += it->second;
-            histogram_print(out, jsonhandler, "GET",it->first,(double) total_count / m_totals.m_get_cmd.m_ops * 100);
+            histogram_print(out, jsonhandler, "GET",it->first,(double) m_totals.m_get_cmd.m_ops);
         }
         if (jsonhandler != NULL){ jsonhandler->close_nesting();}
         fprintf(out, "---\n");
@@ -944,7 +944,7 @@ void run_stats::print_histogram(FILE *out, json_handler *jsonhandler, arbitrary_
         if (jsonhandler != NULL){ jsonhandler->open_nesting("WAIT",NESTED_ARRAY);}
         for( latency_map_itr_const it = m_wait_latency_map.begin() ; it != m_wait_latency_map.end() ; it++) {
             total_count += it->second;
-            histogram_print(out, jsonhandler, "WAIT",it->first,(double) total_count / m_totals.m_wait_cmd.m_ops * 100);
+            histogram_print(out, jsonhandler, "WAIT",it->first,(double) m_totals.m_wait_cmd.m_ops);
         }
         if (jsonhandler != NULL){ jsonhandler->close_nesting();}
     }
